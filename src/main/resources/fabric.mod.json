@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "ccmod",
+  "version": "${version}",
+  "name": "ccmod",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/ccmod/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "com.thecolonel63.ccmod.Ccmod"
+    ]
+  },
+  "mixins": [
+    "ccmod.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
