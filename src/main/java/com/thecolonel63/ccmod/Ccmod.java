@@ -9,6 +9,10 @@ import net.minecraft.registry.entry.RegistryEntry;
 import java.util.Optional;
 
 public class Ccmod implements ModInitializer {
+    public static final boolean ALLOW_STRING_DUPING = false;
+    public static final boolean ALLOW_FALLING_BLOCK_DUPING = false;
+    public static final boolean ALLOW_PISTON_DUPING = false;
+
     public static RegistryEntry<Enchantment> MENDING;
 
     @Override

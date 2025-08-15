@@ -4,10 +4,16 @@
   "package": "com.thecolonel63.ccmod.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "FallingBlockEntityMixin",
+    "ItemStackMixin",
     "MerchantEntityMixin",
     "MinecraftServerMixin",
+    "PistonBlockEntityMixin",
+    "PistonBlockMixin",
     "PlayerManagerMixin",
-    "TradeOfferMixin"
+    "TradeOfferMixin",
+    "TripwireHookBlockMixin",
+    "TurtleEggBlockMixin"
   ],
   "client": [
   ],
