@@ -9,6 +9,7 @@
     "FallingBlockEntityMixin",
     "ItemStackMixin",
     "MerchantEntityMixin",
+    "PhantomEntityMixin",
     "PistonBlockEntityMixin",
     "PistonBlockMixin",
     "PlayerManagerMixin",
