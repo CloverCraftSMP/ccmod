@@ -5,10 +5,10 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "BrewingRecipeRegistryMixin",
+    "EntityTypeMixin",
     "FallingBlockEntityMixin",
     "ItemStackMixin",
     "MerchantEntityMixin",
-    "MinecraftServerMixin",
     "PistonBlockEntityMixin",
     "PistonBlockMixin",
     "PlayerManagerMixin",

@@ -1,10 +1,22 @@
 package com.thecolonel63.ccmod;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.condition.RandomChanceLootCondition;
+import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.function.EnchantRandomlyLootFunction;
+import net.minecraft.loot.function.SetEnchantmentsLootFunction;
+import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.util.Identifier;
 
 import java.util.Optional;
 
@@ -15,14 +27,74 @@ public class Ccmod implements ModInitializer {
 
     public static RegistryEntry<Enchantment> MENDING;
 
+    private static final Identifier ANCIENT_CITY = Identifier.of("minecraft:chests/ancient_city");
+    private static final Identifier END_VAULT = Identifier.of("enderscape:end_city/vault");
+    private static final Identifier ANCIENT_CITY_BARREL = Identifier.of("ancient_cities:ancient_city_barrel");
+
     @Override
     public void onInitialize() {
+        LootTableEvents.MODIFY.register((registryKey, builder, source, wrapper) -> {
+            if (MENDING == null)
+                MENDING = wrapper.getWrapperOrThrow(RegistryKeys.ENCHANTMENT).getOrThrow(Enchantments.MENDING);
+
+            if (!source.isBuiltin()) return;
+
+            if (registryKey.getValue().equals(ANCIENT_CITY)) addMendingBook(builder, 0.1f);
+            if (registryKey.getValue().equals(END_VAULT)) addMendingBook(builder, 0.25f);
+
+            if (registryKey.getValue().equals(ANCIENT_CITY_BARREL)) {
+                builder.pool(
+                        LootPool.builder()
+                                .with(ItemEntry.builder(Items.DIAMOND))
+                                .conditionally(RandomChanceLootCondition.builder(0.0075f))
+                );
+
+                builder.pool(
+                        LootPool.builder()
+                                .with(ItemEntry.builder(Items.GOLDEN_APPLE))
+                                .conditionally(RandomChanceLootCondition.builder(0.0075f))
+                );
+
+                builder.pool(LootPool.builder()
+                        .with(ItemEntry.builder(Items.BOOK)
+                                .apply(new EnchantRandomlyLootFunction.Builder()
+                                        .option(
+                                                wrapper
+                                                        .getWrapperOrThrow(RegistryKeys.ENCHANTMENT)
+                                                        .getOrThrow(Enchantments.SWIFT_SNEAK)
+                                        ))
+                        )
+                        .conditionally(RandomChanceLootCondition.builder(0.0035f)));
+
+                addMendingBook(builder, 0.0025f);
+
+                builder.pool(
+                        LootPool.builder()
+                                .with(ItemEntry.builder(Items.ENCHANTED_GOLDEN_APPLE))
+                                .conditionally(RandomChanceLootCondition.builder(0.0025f))
+                );
+
+                builder.pool(LootPool.builder()
+                        .with(ItemEntry.builder(Items.BOOK)
+                                .apply(EnchantRandomlyLootFunction.builder(wrapper))
+                        )
+                        .conditionally(RandomChanceLootCondition.builder(0.0025f)));
+            }
+        });
+    }
+
+    private static void addMendingBook(LootTable.Builder builder, float rarity) {
+        builder.pool(LootPool.builder()
+                .with(ItemEntry.builder(Items.ENCHANTED_BOOK)
+                        .apply(new SetEnchantmentsLootFunction.Builder().enchantment(MENDING, ConstantLootNumberProvider.create(1.0f)))
+                )
+                .conditionally(RandomChanceLootCondition.builder(rarity)));
     }
 
     public static boolean hasMending(ItemStack stack) {
         return MENDING != null &&
                 Optional.ofNullable(stack.get(DataComponentTypes.STORED_ENCHANTMENTS))
-                .map(e -> e.getEnchantments().contains(MENDING))
-                .orElse(false);
+                        .map(e -> e.getEnchantments().contains(MENDING))
+                        .orElse(false);
     }
 }
