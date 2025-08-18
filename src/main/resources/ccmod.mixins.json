@@ -4,6 +4,7 @@
   "package": "com.thecolonel63.ccmod.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "BlockMixin",
     "BrewingRecipeRegistryMixin",
     "EntityTypeMixin",
     "FallingBlockEntityMixin",
