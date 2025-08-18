@@ -8,6 +8,8 @@
     "BrewingRecipeRegistryMixin",
     "EntityTypeMixin",
     "FallingBlockEntityMixin",
+    "ItemInsertCallbackMixin",
+    "ItemRemoveCallbackMixin",
     "ItemStackMixin",
     "MerchantEntityMixin",
     "PhantomEntityMixin",
