@@ -12,6 +12,7 @@
     "ItemRemoveCallbackMixin",
     "ItemStackMixin",
     "MerchantEntityMixin",
+    "MinecraftEventListenerMixin",
     "PhantomEntityMixin",
     "PistonBlockEntityMixin",
     "PistonBlockMixin",
