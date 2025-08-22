@@ -26,8 +26,8 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    modImplementation files("libs/ledger-1.3.5.jar")
-    modImplementation files("libs/Discord-MC-Chat-1.21.1-2.5.0.jar")
+    modCompileOnly files("libs/ledger-1.3.5.jar")
+    modCompileOnly files("libs/Discord-MC-Chat-1.21.1-2.5.0.jar")
 }
 
 processResources {
