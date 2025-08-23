@@ -1,4 +1,4 @@
-package com.thecolonel63.ccmod.mixin;
+package com.thecolonel63.ccmod.mixin.compat;
 
 import com.github.quiltservertools.ledger.callbacks.ItemRemoveCallback;
 import net.minecraft.item.ItemStack;

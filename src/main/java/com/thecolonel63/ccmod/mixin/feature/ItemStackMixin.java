@@ -1,4 +1,4 @@
-package com.thecolonel63.ccmod.mixin;
+package com.thecolonel63.ccmod.mixin.feature;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;

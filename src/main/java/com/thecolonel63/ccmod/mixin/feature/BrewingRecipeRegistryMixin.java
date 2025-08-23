@@ -1,4 +1,4 @@
-package com.thecolonel63.ccmod.mixin;
+package com.thecolonel63.ccmod.mixin.feature;
 
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potions;
