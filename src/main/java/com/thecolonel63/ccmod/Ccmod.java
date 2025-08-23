@@ -1,6 +1,7 @@
 package com.thecolonel63.ccmod;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.enchantment.Enchantment;
@@ -14,10 +15,12 @@ import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.EnchantRandomlyLootFunction;
 import net.minecraft.loot.function.SetEnchantmentsLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
+import net.minecraft.recipe.RecipeManager;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class Ccmod implements ModInitializer {
@@ -31,8 +34,24 @@ public class Ccmod implements ModInitializer {
     private static final Identifier END_VAULT = Identifier.of("enderscape:end_city/vault");
     private static final Identifier ANCIENT_CITY_BARREL = Identifier.of("ancient_cities:ancient_city_barrel");
 
+    private static final ArrayList<Identifier> REMOVED_RECIPES = new ArrayList<>() {{
+        add(Identifier.of("enderscape:nebulite_from_blasting_mirestone_nebulite_ore"));
+        add(Identifier.of("enderscape:nebulite_from_blasting_nebulite_ore"));
+        add(Identifier.of("enderscape:nebulite_from_shards"));
+        add(Identifier.of("enderscape:nebulite_from_smelting_mirestone_nebulite_ore"));
+        add(Identifier.of("enderscape:nebulite_from_smelting_nebulite_ore"));
+    }};
+
     @Override
     public void onInitialize() {
+        ServerLifecycleEvents.SERVER_STARTED.register(server -> {
+            RecipeManager manager = server.getRecipeManager();
+            manager.setRecipes(manager.values().stream()
+                    .filter(recipeEntry -> !REMOVED_RECIPES.contains(recipeEntry.id()))
+                    .toList()
+            );
+        });
+
         LootTableEvents.MODIFY.register((registryKey, builder, source, wrapper) -> {
             if (MENDING == null)
                 MENDING = wrapper.getWrapperOrThrow(RegistryKeys.ENCHANTMENT).getOrThrow(Enchantments.MENDING);

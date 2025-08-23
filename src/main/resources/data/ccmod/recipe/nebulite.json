@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "enderscape:nebulite_shards"
+    },
+    "X": {
+      "item": "minecraft:netherite_scrap"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#X#",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "enderscape:nebulite"
+  }
+}
