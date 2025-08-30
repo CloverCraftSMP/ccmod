@@ -4,7 +4,6 @@ import com.thecolonel63.ccmod.mixin.access.ItemEntryAccessor;
 import com.thecolonel63.ccmod.mixin.access.LeafEntryAccessor;
 import com.thecolonel63.ccmod.mixin.access.LootTableAccessor;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.enchantment.Enchantment;
@@ -18,13 +17,11 @@ import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.EnchantRandomlyLootFunction;
 import net.minecraft.loot.function.SetEnchantmentsLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
-import net.minecraft.recipe.RecipeManager;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 public class Ccmod implements ModInitializer {
@@ -41,24 +38,8 @@ public class Ccmod implements ModInitializer {
 
     private static final Identifier MIRROR = Identifier.of("enderscape:mirror");
 
-    private static final ArrayList<Identifier> REMOVED_RECIPES = new ArrayList<>() {{
-        add(Identifier.of("enderscape:nebulite_from_blasting_mirestone_nebulite_ore"));
-        add(Identifier.of("enderscape:nebulite_from_blasting_nebulite_ore"));
-        add(Identifier.of("enderscape:nebulite_from_shards"));
-        add(Identifier.of("enderscape:nebulite_from_smelting_mirestone_nebulite_ore"));
-        add(Identifier.of("enderscape:nebulite_from_smelting_nebulite_ore"));
-    }};
-
     @Override
     public void onInitialize() {
-        ServerLifecycleEvents.SERVER_STARTED.register(server -> {
-            RecipeManager manager = server.getRecipeManager();
-            manager.setRecipes(manager.values().stream()
-                    .filter(recipeEntry -> !REMOVED_RECIPES.contains(recipeEntry.id()))
-                    .toList()
-            );
-        });
-
         LootTableEvents.REPLACE.register((key, original, source, registries) -> {
             boolean modified = false;
 
