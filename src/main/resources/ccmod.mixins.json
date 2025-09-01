@@ -10,6 +10,7 @@
     "compat.ItemInsertCallbackMixin",
     "compat.ItemRemoveCallbackMixin",
     "compat.MinecraftEventListenerMixin",
+    "compat.WaterFramesCommandMixin",
     "feature.BlockMixin",
     "feature.BrewingRecipeRegistryMixin",
     "feature.ItemStackMixin",
