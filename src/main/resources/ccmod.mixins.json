@@ -23,7 +23,8 @@
     "fixes.FallingBlockEntityMixin",
     "fixes.PistonBlockEntityMixin",
     "fixes.PistonBlockMixin",
-    "fixes.TripwireHookBlockMixin"
+    "fixes.TripwireHookBlockMixin",
+    "fixes.ElytraSlotTrinketMixin"
   ],
   "client": [
   ],
