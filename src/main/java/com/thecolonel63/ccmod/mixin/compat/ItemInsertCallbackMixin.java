@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Pseudo
-@Mixin(targets = "com/github/quiltservertools/ledger/callbacks/ItemInsertCallback$DefaultImpls")
+@Mixin(targets = "com.github.quiltservertools.ledger.callbacks.ItemInsertCallback$DefaultImpls")
 public class ItemInsertCallbackMixin {
     @Inject(method = "EVENT$lambda$1$lambda$0", at = @At("HEAD"), cancellable = true, remap = false)
     private static void fixNull(ItemInsertCallback[] $listeners, ItemStack stack, BlockPos pos, ServerWorld world, String source, ServerPlayerEntity player, CallbackInfo ci) {

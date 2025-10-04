@@ -4,6 +4,7 @@ import com.thecolonel63.ccmod.mixin.access.ItemEntryAccessor;
 import com.thecolonel63.ccmod.mixin.access.LeafEntryAccessor;
 import com.thecolonel63.ccmod.mixin.access.LootTableAccessor;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.enchantment.Enchantment;
@@ -40,6 +41,8 @@ public class Ccmod implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        CcmodCriteria.init();
+
         LootTableEvents.REPLACE.register((key, original, source, registries) -> {
             boolean modified = false;
 
@@ -112,6 +115,8 @@ public class Ccmod implements ModInitializer {
                         .conditionally(RandomChanceLootCondition.builder(0.0025f)));
             }
         });
+
+        ServerTickEvents.END_SERVER_TICK.register(server -> server.getPlayerManager().getPlayerList().forEach(player -> CcmodCriteria.PING_CRITERION.trigger(player, player.networkHandler.getLatency())));
     }
 
     private static void addMendingBook(LootTable.Builder builder, float rarity) {

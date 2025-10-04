@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Pseudo
-@Mixin(targets = "com/github/quiltservertools/ledger/callbacks/ItemRemoveCallback$DefaultImpls")
+@Mixin(targets = "com.github.quiltservertools.ledger.callbacks.ItemRemoveCallback$DefaultImpls")
 public class ItemRemoveCallbackMixin {
     @Inject(method = "EVENT$lambda$1$lambda$0", at = @At("HEAD"), cancellable = true, remap = false)
     private static void fixNull(ItemRemoveCallback[] $listeners, ItemStack stack, BlockPos pos, ServerWorld world, String source, ServerPlayerEntity player, CallbackInfo ci) {

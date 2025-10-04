@@ -12,7 +12,7 @@ import net.minecraft.world.dimension.DimensionTypes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(targets = "net/minecraft/entity/mob/PhantomEntity$FindTargetGoal")
+@Mixin(targets = "net.minecraft.entity.mob.PhantomEntity$FindTargetGoal")
 public class PhantomEntityMixin {
     @WrapOperation(method = "canStart", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/PhantomEntity;isTarget(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/entity/ai/TargetPredicate;)Z"))
     private boolean checkInsomnia(PhantomEntity instance, LivingEntity livingEntity, TargetPredicate targetPredicate, Operation<Boolean> original) {
