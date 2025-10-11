@@ -5,4 +5,6 @@ import net.minecraft.advancement.criterion.Criteria;
 
 public class CcmodCriteria {
     public static final PingCriterion PING_CRITERION = Criteria.register("ccmod:have_ping", new PingCriterion());
+
+    public static void init() {}
 }

@@ -43,6 +43,8 @@ public class Ccmod implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        CcmodCriteria.init();
+
         LootTableEvents.REPLACE.register((key, original, source, registries) -> {
             boolean modified = false;
 
