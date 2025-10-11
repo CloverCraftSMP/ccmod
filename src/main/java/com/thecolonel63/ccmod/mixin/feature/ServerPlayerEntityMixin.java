@@ -2,7 +2,7 @@ package com.thecolonel63.ccmod.mixin.feature;
 
 import com.thecolonel63.ccmod.Ccmod;
 import com.thecolonel63.ccmod.duck.AFKDuck;
-import com.thecolonel63.ccmod.event.PlayerEvents;
+import com.thecolonel63.ccmod.registry.CcmodEvents;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
@@ -28,7 +28,7 @@ public class ServerPlayerEntityMixin implements AFKDuck {
 
         if (yaw != lastYaw || pitch != lastPitch || !pos.equals(lastPos)) afkTimer = 0;
         boolean isAFK = afkTimer == Ccmod.AFK_TIME;
-        if (isAFK != wasAFK) PlayerEvents.PLAYER_AFK.invoker().onPlayerAFK(player, isAFK);
+        if (isAFK != wasAFK) CcmodEvents.PLAYER_AFK.invoker().onPlayerAFK(player, isAFK);
 
         wasAFK = isAFK;
         lastYaw = yaw;

@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(TurtleEggBlock.class)
 public class TurtleEggBlockMixin {
     @WrapOperation(method = "shouldHatchProgress", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getSkyAngle(F)F"))
-    private float wrapSkyAngle(World instance, float v, Operation<Float> original) {
+    private float delayHatchProgress(World instance, float v, Operation<Float> original) {
         float angle = original.call(instance, v);
         return angle > 0.7845 && angle < 0.8202 ? 0.67f : 0.0f;
     }

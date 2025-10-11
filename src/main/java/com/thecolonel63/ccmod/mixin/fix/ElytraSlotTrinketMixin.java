@@ -1,4 +1,4 @@
-package com.thecolonel63.ccmod.mixin.fixes;
+package com.thecolonel63.ccmod.mixin.fix;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -22,7 +22,7 @@ public class ElytraSlotTrinketMixin {
                     target = "Lnet/minecraft/item/ItemStack;damage(ILnet/minecraft/server/world/ServerWorld;Lnet/minecraft/server/network/ServerPlayerEntity;Ljava/util/function/Consumer;)V"
             )
     )
-    private void ccmod$skipDamageIfOneLeft(
+    private void skipDamageIfOneLeft(
             ItemStack stack, int amount, ServerWorld serverWorld, ServerPlayerEntity serverPlayerEntity,
             Consumer<Item> breakCallback, Operation<Void> original
     ) {

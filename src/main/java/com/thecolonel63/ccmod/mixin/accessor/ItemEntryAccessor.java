@@ -1,4 +1,4 @@
-package com.thecolonel63.ccmod.mixin.access;
+package com.thecolonel63.ccmod.mixin.accessor;
 
 import net.minecraft.item.Item;
 import net.minecraft.loot.entry.ItemEntry;

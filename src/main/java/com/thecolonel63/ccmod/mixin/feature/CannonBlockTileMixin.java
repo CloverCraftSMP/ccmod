@@ -1,4 +1,4 @@
-package com.thecolonel63.ccmod.mixin.compat;
+package com.thecolonel63.ccmod.mixin.feature;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -16,7 +16,7 @@ import java.util.Optional;
 @Mixin(CannonBlockTile.class)
 public class CannonBlockTileMixin {
     @WrapOperation(method = "fire", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;decrement(I)V", ordinal = 1))
-    private void checkDecrementStack(ItemStack instance, int amount, Operation<Void> original) {
+    private void addInfiniTNT(ItemStack instance, int amount, Operation<Void> original) {
         boolean preventDecrement = instance.isOf(Items.TNT) && Optional.ofNullable(instance.get(DataComponentTypes.CUSTOM_DATA))
                 .map(e -> e.copyNbt().getBoolean("ccmod:infinite_tnt"))
                 .orElse(false);

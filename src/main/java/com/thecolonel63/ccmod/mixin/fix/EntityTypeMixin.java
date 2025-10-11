@@ -1,4 +1,4 @@
-package com.thecolonel63.ccmod.mixin.fixes;
+package com.thecolonel63.ccmod.mixin.fix;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
@@ -17,7 +17,7 @@ public class EntityTypeMixin<T extends Entity> {
     private final Identifier RED_MERCHANT = Identifier.of("supplementaries", "red_merchant");
 
     @WrapMethod(method = "create(Lnet/minecraft/world/World;)Lnet/minecraft/entity/Entity;")
-    private @Nullable T wrapCreation(World world, Operation<T> original) {
+    private @Nullable T preventRedMerchant(World world, Operation<T> original) {
         T entity = original.call(world);
         Identifier entityId = Registries.ENTITY_TYPE.getId(entity.getType());
         return entityId.equals(RED_MERCHANT) ? null : entity;

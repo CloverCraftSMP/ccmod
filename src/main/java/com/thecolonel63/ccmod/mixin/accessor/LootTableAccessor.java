@@ -1,4 +1,4 @@
-package com.thecolonel63.ccmod.mixin.access;
+package com.thecolonel63.ccmod.mixin.accessor;
 
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;

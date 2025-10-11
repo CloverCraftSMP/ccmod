@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.thecolonel63.ccmod.duck.AFKDuck;
-import com.thecolonel63.ccmod.event.PlayerEvents;
+import com.thecolonel63.ccmod.registry.CcmodEvents;
 import de.maxhenkel.status.net.PlayerStatePacket;
 import de.maxhenkel.status.playerstate.Availability;
 import de.maxhenkel.status.playerstate.PlayerState;
@@ -31,7 +31,7 @@ public abstract class PlayerStateManagerMixin {
 
     @Inject(method = "<init>()V", at = @At("TAIL"), remap = false)
     private void addAFKEventCallback(CallbackInfo ci) {
-        PlayerEvents.PLAYER_AFK.register((player, isAFK) -> {
+        CcmodEvents.PLAYER_AFK.register((player, isAFK) -> {
             UUID uuid = player.getUuid();
             PlayerState state = this.states.getOrDefault(uuid, new PlayerState(uuid));
             if (state.getAvailability() == Availability.DO_NOT_DISTURB) return;

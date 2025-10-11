@@ -1,4 +1,4 @@
-package com.thecolonel63.ccmod.mixin.fixes;
+package com.thecolonel63.ccmod.mixin.fix;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;

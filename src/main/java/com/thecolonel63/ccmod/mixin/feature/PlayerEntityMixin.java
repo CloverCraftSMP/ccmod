@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin {
     @Inject(method = "dropInventory", at = @At("TAIL"))
-    private void afterDropInventory(CallbackInfo ci) {
+    private void dropBindingArmor(CallbackInfo ci) {
         PlayerEntity entity = (PlayerEntity) (Object) this;
         PlayerInventory inventory = entity.getInventory();
         if (!entity.getWorld().getGameRules().getBoolean(GameRules.KEEP_INVENTORY)) return;

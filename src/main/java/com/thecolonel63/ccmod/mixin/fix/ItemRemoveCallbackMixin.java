@@ -1,4 +1,4 @@
-package com.thecolonel63.ccmod.mixin.compat;
+package com.thecolonel63.ccmod.mixin.fix;
 
 import com.github.quiltservertools.ledger.callbacks.ItemRemoveCallback;
 import net.minecraft.item.ItemStack;
@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(targets = "com.github.quiltservertools.ledger.callbacks.ItemRemoveCallback$DefaultImpls")
 public class ItemRemoveCallbackMixin {
     @Inject(method = "EVENT$lambda$1$lambda$0", at = @At("HEAD"), cancellable = true, remap = false)
-    private static void fixNull(ItemRemoveCallback[] $listeners, ItemStack stack, BlockPos pos, ServerWorld world, String source, ServerPlayerEntity player, CallbackInfo ci) {
+    private static void preventNullItemRemoveCrash(ItemRemoveCallback[] $listeners, ItemStack stack, BlockPos pos, ServerWorld world, String source, ServerPlayerEntity player, CallbackInfo ci) {
         if (pos == null) {
             ci.cancel();
         }

@@ -15,7 +15,7 @@ import java.util.Optional;
 @Mixin(ServerPlayerInteractionManager.class)
 public class ServerPlayerInteractionManagerMixin {
     @WrapOperation(method = "interactBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;useOnBlock(Lnet/minecraft/item/ItemUsageContext;)Lnet/minecraft/util/ActionResult;"))
-    private ActionResult wrapOnBlock(ItemStack instance, ItemUsageContext context, Operation<ActionResult> original) {
+    private ActionResult addPreventPlacementTag(ItemStack instance, ItemUsageContext context, Operation<ActionResult> original) {
         boolean preventPlacement = Optional.ofNullable(instance.get(DataComponentTypes.CUSTOM_DATA))
                 .map(e -> e.copyNbt().getBoolean("ccmod:prevent_placement"))
                 .orElse(false);

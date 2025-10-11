@@ -1,8 +1,9 @@
 package com.thecolonel63.ccmod;
 
-import com.thecolonel63.ccmod.mixin.access.ItemEntryAccessor;
-import com.thecolonel63.ccmod.mixin.access.LeafEntryAccessor;
-import com.thecolonel63.ccmod.mixin.access.LootTableAccessor;
+import com.thecolonel63.ccmod.mixin.accessor.ItemEntryAccessor;
+import com.thecolonel63.ccmod.mixin.accessor.LeafEntryAccessor;
+import com.thecolonel63.ccmod.mixin.accessor.LootTableAccessor;
+import com.thecolonel63.ccmod.registry.CcmodCriteria;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
@@ -42,8 +43,6 @@ public class Ccmod implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        CcmodCriteria.init();
-
         LootTableEvents.REPLACE.register((key, original, source, registries) -> {
             boolean modified = false;
 

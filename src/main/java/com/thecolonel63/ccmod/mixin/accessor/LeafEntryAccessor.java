@@ -1,4 +1,4 @@
-package com.thecolonel63.ccmod.mixin.access;
+package com.thecolonel63.ccmod.mixin.accessor;
 
 import net.minecraft.loot.entry.LeafEntry;
 import org.spongepowered.asm.mixin.Mixin;

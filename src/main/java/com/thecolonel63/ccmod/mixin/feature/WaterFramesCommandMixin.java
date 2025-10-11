@@ -1,4 +1,4 @@
-package com.thecolonel63.ccmod.mixin.compat;
+package com.thecolonel63.ccmod.mixin.feature;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Pseudo;
 @Mixin(WaterFramesCommand.class)
 public class WaterFramesCommandMixin {
     @WrapMethod(method = "hasPermissions")
-    private static boolean wrapPermissions(ServerCommandSource sourceStack, Operation<Boolean> original) {
+    private static boolean addWaterframesPermissionCheck(ServerCommandSource sourceStack, Operation<Boolean> original) {
         return original.call(sourceStack) || Permissions.check(sourceStack, "waterframes.root");
     }
 }
