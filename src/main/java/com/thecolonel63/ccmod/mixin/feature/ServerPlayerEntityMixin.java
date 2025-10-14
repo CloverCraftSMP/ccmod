@@ -2,7 +2,9 @@ package com.thecolonel63.ccmod.mixin.feature;
 
 import com.thecolonel63.ccmod.Ccmod;
 import com.thecolonel63.ccmod.duck.AFKDuck;
+import com.thecolonel63.ccmod.registry.CcmodCriteria;
 import com.thecolonel63.ccmod.registry.CcmodEvents;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,9 +20,21 @@ public class ServerPlayerEntityMixin implements AFKDuck {
     @Unique private float lastPitch = 0;
     @Unique private int afkTimer = 0;
     @Unique private boolean wasAFK = false;
+    @Unique private int highestPing = 0;
+
+    @Inject(method = "readCustomDataFromNbt", at = @At("TAIL"))
+    private void loadHighestPing(NbtCompound nbt, CallbackInfo ci) {
+        highestPing = nbt.getInt("ccmod:highest_ping");
+    }
+
+    @Inject(method = "writeCustomDataToNbt", at = @At("TAIL"))
+    private void storeHighesPing(NbtCompound nbt, CallbackInfo ci) {
+        nbt.putInt("ccmod:highest_ping", highestPing);
+    }
 
     @Inject(method = "tick", at = @At("TAIL"))
-    private void updateAFK(CallbackInfo ci) {
+    private void onTickServerPlayer(CallbackInfo ci) {
+        // Update AFK timer
         ServerPlayerEntity player = (ServerPlayerEntity) (Object) this;
         float yaw = player.getHeadYaw();
         float pitch = player.getPitch();
@@ -36,6 +50,11 @@ public class ServerPlayerEntityMixin implements AFKDuck {
         lastPos = pos;
 
         if (afkTimer < Ccmod.AFK_TIME) afkTimer++;
+
+        // Ping advancement criteria
+        int currentPing = player.networkHandler.getLatency();
+        CcmodCriteria.PING_CRITERION.trigger(player, highestPing, currentPing);
+        if (currentPing > highestPing) highestPing = currentPing;
     }
 
     @Override

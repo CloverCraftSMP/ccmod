@@ -9,8 +9,8 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import java.util.Optional;
 
 public class PingCriterion extends AbstractCriterion<PingCriterion.Conditions> {
-    public void trigger(ServerPlayerEntity player, int requiredPing) {
-        trigger(player, conditions -> conditions.requirementsMet(requiredPing));
+    public void trigger(ServerPlayerEntity player, int highestPing, int currentPing) {
+        trigger(player, conditions -> conditions.requirementsMet(highestPing, currentPing));
     }
 
     @Override
@@ -29,8 +29,8 @@ public class PingCriterion extends AbstractCriterion<PingCriterion.Conditions> {
             return playerPredicate;
         }
 
-        public boolean requirementsMet(int ping) {
-            return ping >= requiredPing;
+        public boolean requirementsMet(int highestPing, int currentPing) {
+            return currentPing >= requiredPing && requiredPing > highestPing;
         }
     }
 }
