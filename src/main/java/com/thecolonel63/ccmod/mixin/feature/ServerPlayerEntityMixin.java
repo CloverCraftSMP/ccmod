@@ -28,7 +28,7 @@ public class ServerPlayerEntityMixin implements AFKDuck {
     }
 
     @Inject(method = "writeCustomDataToNbt", at = @At("TAIL"))
-    private void storeHighesPing(NbtCompound nbt, CallbackInfo ci) {
+    private void storeHighestPing(NbtCompound nbt, CallbackInfo ci) {
         nbt.putInt("ccmod:highest_ping", highestPing);
     }
 
