@@ -26,9 +26,9 @@ import net.minecraft.util.Identifier;
 import java.util.Optional;
 
 public class Ccmod implements ModInitializer {
-    public static final boolean ALLOW_STRING_DUPING = true;
-    public static final boolean ALLOW_FALLING_BLOCK_DUPING = true;
-    public static final boolean ALLOW_PISTON_DUPING = true;
+    public static final boolean ALLOW_STRING_DUPING = false;
+    public static final boolean ALLOW_FALLING_BLOCK_DUPING = false;
+    public static final boolean ALLOW_PISTON_DUPING = false;
     public static final int AFK_TIME = 20 * 60 * 5;
 
     public static RegistryEntry<Enchantment> MENDING;
