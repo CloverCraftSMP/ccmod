@@ -2,6 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "com.thecolonel63.ccmod.mixin",
+  "plugin": "com.thecolonel63.ccmod.conditional.MixinConfig",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "accessor.ItemEntryAccessor",
@@ -27,6 +28,8 @@
     "fix.FallingBlockEntityMixin",
     "fix.ItemInsertCallbackMixin",
     "fix.ItemRemoveCallbackMixin",
+    "fix.LivingEntityMixinRebound",
+    "fix.LivingEntityMixinSleep",
     "fix.MinecraftEventListenerMixin",
     "fix.PistonBlockEntityMixin",
     "fix.PistonBlockMixin",
