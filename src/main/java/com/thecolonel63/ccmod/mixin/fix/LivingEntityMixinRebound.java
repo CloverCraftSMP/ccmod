@@ -43,19 +43,19 @@ public abstract class LivingEntityMixinRebound extends Entity {
     @Unique
     private int onGroundTicks = -1;
 
-    @TargetHandler(mixin = "net.bunten.enderscape.mixin.LivingEntityMixin", name = "Enderscape$canStandOnFluid")
+    @TargetHandler(mixin = "net.bunten.enderscape.mixin.LivingEntityMixin", name = "Lnet/bunten/enderscape/mixin/LivingEntityMixin;Enderscape$canStandOnFluid(Lnet/minecraft/fluid/FluidState;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V")
     @WrapOperation(method = "@MixinSquared:Handler", at = @At(value = "INVOKE", target = "Lnet/bunten/enderscape/registry/EnderscapeEnchantments;hasRebound(Lnet/minecraft/world/World;Lnet/minecraft/item/ItemStack;)Z"))
     private boolean wrapReboundForFluid(World registry, ItemStack enchantment, Operation<Boolean> original) {
         return original.call(registry, enchantment) || hasReboundTrinket();
     }
 
-    @TargetHandler(mixin = "net.bunten.enderscape.mixin.LivingEntityMixin", name = "Enderscape$travel")
+    @TargetHandler(mixin = "net.bunten.enderscape.mixin.LivingEntityMixin", name = "Lnet/bunten/enderscape/mixin/LivingEntityMixin;Enderscape$travel(Lnet/minecraft/entity/LivingEntity;)Z")
     @WrapOperation(method = "@MixinSquared:Handler", at = @At(value = "INVOKE", target = "Lnet/bunten/enderscape/registry/EnderscapeEnchantments;hasRebound(Lnet/minecraft/world/World;Lnet/minecraft/item/ItemStack;)Z"))
     private boolean wrapReboundForTravel(World registry, ItemStack enchantment, Operation<Boolean> original) {
         return original.call(registry, enchantment) || hasReboundTrinket();
     }
 
-    @TargetHandler(mixin = "net.bunten.enderscape.mixin.LivingEntityMixin", name = "Lnet/bunten/enderscape/mixin/LivingEntityMixin;Enderscape$updateFallFlying(Lnet/minecraft/entity/LivingEntity;Lcom/llamalad7/mixinextras/injector/wrapoperation/Operation;)Z")
+    @TargetHandler(mixin = "net.bunten.enderscape.mixin.LivingEntityMixin", name = "Lnet/bunten/enderscape/mixin/LivingEntityMixin;Enderscape$updateFallFlying(Lnet/minecraft/entity/LivingEntity;)Z")
     @WrapOperation(method = "@MixinSquared:Handler", at = @At(value = "INVOKE", target = "Lnet/bunten/enderscape/registry/EnderscapeEnchantments;hasRebound(Lnet/minecraft/world/World;Lnet/minecraft/item/ItemStack;)Z"))
     private boolean wrapReboundForFallFlying(World registry, ItemStack enchantment, Operation<Boolean> original) {
         return original.call(registry, enchantment) || hasReboundTrinket();
