@@ -22,7 +22,6 @@
     "feature.ServerPlayerInteractionManagerMixin",
     "feature.TradeOfferMixin",
     "feature.TurtleEggBlockMixin",
-    "feature.WaterFramesCommandMixin",
     "fix.ElytraSlotTrinketMixin",
     "fix.EntityTypeMixin",
     "fix.FallingBlockEntityMixin",

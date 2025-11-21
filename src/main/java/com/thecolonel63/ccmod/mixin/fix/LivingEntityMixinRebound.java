@@ -55,13 +55,13 @@ public abstract class LivingEntityMixinRebound extends Entity {
         return original.call(registry, enchantment) || hasReboundTrinket();
     }
 
-    @TargetHandler(mixin = "net.bunten.enderscape.mixin.LivingEntityMixin", name = "Lnet/bunten/enderscape/mixin/LivingEntityMixin;Enderscape$updateFallFlying(Lnet/minecraft/entity/LivingEntity;)Z")
+    @TargetHandler(mixin = "net.bunten.enderscape.mixin.LivingEntityMixin", name = "Lnet/bunten/enderscape/mixin/LivingEntityMixin;Enderscape$updateFallFlying(Lnet/minecraft/entity/LivingEntity;Lcom/llamalad7/mixinextras/injector/wrapoperation/Operation;)Z")
     @WrapOperation(method = "@MixinSquared:Handler", at = @At(value = "INVOKE", target = "Lnet/bunten/enderscape/registry/EnderscapeEnchantments;hasRebound(Lnet/minecraft/world/World;Lnet/minecraft/item/ItemStack;)Z"))
     private boolean wrapReboundForFallFlying(World registry, ItemStack enchantment, Operation<Boolean> original) {
         return original.call(registry, enchantment) || hasReboundTrinket();
     }
 
-    @TargetHandler(mixin = "net.bunten.enderscape.mixin.LivingEntityMixin", name = "Enderscape$travelShiftAfter")
+    @TargetHandler(mixin = "net.bunten.enderscape.mixin.LivingEntityMixin", name = "Lnet/bunten/enderscape/mixin/LivingEntityMixin;Enderscape$travelShiftAfter(Lnet/minecraft/util/math/Vec3d;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V")
     @WrapOperation(method = "@MixinSquared:Handler", at = @At(value = "INVOKE", target = "Lnet/bunten/enderscape/registry/EnderscapeEnchantments;hasRebound(Lnet/minecraft/world/World;Lnet/minecraft/item/ItemStack;)Z"))
     private boolean wrapReboundForTravelShiftAfter(World registry, ItemStack enchantment, Operation<Boolean> original) {
         return original.call(registry, enchantment) || hasReboundTrinket();

@@ -16,7 +16,6 @@ public class MixinConfig implements IMixinConfigPlugin {
     private static final Map<String, Supplier<Boolean>> CONDITIONS = ImmutableMap.of(
             "com.thecolonel63.ccmod.mixin.feature.CannonBlockTileMixin", () -> FabricLoader.getInstance().isModLoaded("supplementaries"),
             "com.thecolonel63.ccmod.mixin.feature.PlayerStateManagerMixin", () -> FabricLoader.getInstance().isModLoaded("status"),
-            "com.thecolonel63.ccmod.mixin.feature.WaterFramesCommandMixin", () -> FabricLoader.getInstance().isModLoaded("waterframes"),
             "com.thecolonel63.ccmod.mixin.fix.ElytraSlotTrinketMixin", () -> FabricLoader.getInstance().isModLoaded("elytraslot"),
             "com.thecolonel63.ccmod.mixin.fix.ItemInsertCallbackMixin", () -> FabricLoader.getInstance().isModLoaded("ledger"),
             "com.thecolonel63.ccmod.mixin.fix.ItemRemoveCallbackMixin", () -> FabricLoader.getInstance().isModLoaded("ledger"),
