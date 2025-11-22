@@ -21,7 +21,8 @@ public class MixinConfig implements IMixinConfigPlugin {
             "com.thecolonel63.ccmod.mixin.fix.ItemRemoveCallbackMixin", () -> FabricLoader.getInstance().isModLoaded("ledger"),
             "com.thecolonel63.ccmod.mixin.fix.LivingEntityMixinRebound", () -> FabricLoader.getInstance().isModLoaded("elytraslot") && FabricLoader.getInstance().isModLoaded("enderscape"),
             "com.thecolonel63.ccmod.mixin.fix.LivingEntityMixinSleep", () -> FabricLoader.getInstance().isModLoaded("status"),
-            "com.thecolonel63.ccmod.mixin.fix.MinecraftEventListenerMixin", () -> FabricLoader.getInstance().isModLoaded("discord-mc-chat-1_21_1")
+            "com.thecolonel63.ccmod.mixin.fix.MinecraftEventListenerMixin", () -> FabricLoader.getInstance().isModLoaded("discord-mc-chat-1_21_1"),
+            "com.thecolonel63.ccmod.mixin.fix.ZombieHorseMixin", () -> FabricLoader.getInstance().isModLoaded("supplementaries")
     );
 
     @Override

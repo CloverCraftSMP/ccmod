@@ -32,7 +32,8 @@
     "fix.MinecraftEventListenerMixin",
     "fix.PistonBlockEntityMixin",
     "fix.PistonBlockMixin",
-    "fix.TripwireHookBlockMixin"
+    "fix.TripwireHookBlockMixin",
+    "fix.ZombieHorseMixin"
   ],
   "client": [
   ],
